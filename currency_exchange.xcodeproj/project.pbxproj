@@ -101,13 +101,13 @@
 		C8DBBFCA2799E757007FAAF6 /* Currency List */ = {
 			isa = PBXGroup;
 			children = (
-				C8DBBFED2799F9A7007FAAF6 /* Errors */,
 				C8DBBFD12799E8C2007FAAF6 /* Views */,
 				C8DBBFD32799E8D5007FAAF6 /* View Models */,
 				C8DBBFD22799E8CE007FAAF6 /* Models */,
 				C8DBBFD82799ECEF007FAAF6 /* Services */,
 				C8DBBFDD2799EDBC007FAAF6 /* Repositories */,
 				C8DBBFE82799F163007FAAF6 /* Utilities */,
+				C8DBBFED2799F9A7007FAAF6 /* Errors */,
 			);
 			path = "Currency List";
 			sourceTree = "<group>";

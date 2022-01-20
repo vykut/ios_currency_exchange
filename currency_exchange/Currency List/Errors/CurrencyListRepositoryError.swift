@@ -8,5 +8,5 @@
 import Foundation
 
 enum CurrencyListRepositoryError: Error {
-    case endpointNotConfigured
+    case endpointURLNotConfigured
 }

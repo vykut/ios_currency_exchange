@@ -14,7 +14,8 @@ class CurrencyListViewModel: ObservableObject {
     private var currencies: [CurrencyPair] = []
     @Published var cellsViewModels: [CurrencyListCellViewModel] = []
 
-    private var serviceCancellable: AnyCancellable?
+    @Published var isLoading: Bool = false
+    @Published var shouldShowAlert: Bool = false
 
     private let service: CurrencyListServiceProtocol
     private let utils: CurrencyListUtilsProtocol
@@ -29,11 +30,27 @@ class CurrencyListViewModel: ObservableObject {
 
     @Sendable
     func getCurrencies() async {
+        isLoading = true
         do {
             currencies = try await service.getCurrencyRatePairs()
             cellsViewModels = await utils.convertCurrenciesToCellViewModels(currencies)
         } catch {
-            // TODO: Handle error
+            shouldShowAlert = true
         }
+        isLoading = false
+    }
+}
+
+extension CurrencyListViewModel {
+    var alertTitle: String {
+        "Failed to fetch rates"
+    }
+
+    var alertButton: String {
+        "OK"
+    }
+
+    var spinnerTitle: String {
+        "Loading rates..."
     }
 }

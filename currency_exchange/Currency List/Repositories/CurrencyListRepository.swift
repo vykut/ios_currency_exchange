@@ -9,11 +9,12 @@ import Foundation
 import Combine
 
 actor CurrencyListRepository: CurrencyListRepositoryProtocol {
-    private let endpointURL: URL? = URL(string: "http://gnb.dev.airtouchmedia.com/rates2.json")
+    private let baseURL: URL? = URL(string: "http://gnb.dev.airtouchmedia.com")
+    private var ratesURL: URL? { baseURL?.appendingPathComponent("/rates2.json") }
 
     func fetchCurrencyRatePairs() async throws -> CurrencyPairAPIResponse {
-        guard let url = endpointURL else {
-            throw CurrencyListRepositoryError.endpointNotConfigured
+        guard let url = ratesURL else {
+            throw CurrencyListRepositoryError.endpointURLNotConfigured
         }
 
         let json: (data: Data, response: URLResponse) = try await URLSession.shared.data(from: url)
